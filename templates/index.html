@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" > -->
+		 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}?v=12" >
+		<title>ShopBillingWEb</title>
+	</head>
+	<body >
+		<div class="maindiv">
+			<h1 class='heading'>Gain Stores</h1>
+
+
+			<table style="width:100%" id=>
+				<tr>
+					<th>Item</th>
+					<th>Rate</th>
+					<th>Qty</th>
+					<th>Amt</th>
+				</tr>
+
+				<tr >
+					<td>Rice</td>
+					<td>60</td>
+					<td>5</td>
+					<td>300</td>
+
+				</tr>
+
+			</table>
+			<table style="width:100%" id=>
+				<td>Total</td>
+				<td id='Total'>0</td>
+			</table>
+			<form>
+			<label for="iname">Item name:</label>
+				<input type="text" id="iname" name="Iname" value="Unamed Item">
+
+			</form>
+			<button id="itembutton">Add Item</button>
+
+		</div>
+		<script src="{{ url_for('static', filename='main.js') }}"></script>
+	
+<!-- 		<script src="{{ url_for('static', filename='jquery-3.3.1.slim.min.js') }}" ></script>
+		<script src="{{ url_for('static', filename='popper.min.js') }}" ></script>
+		<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script> -->
+
+
+	</body>
+</html>

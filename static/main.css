@@ -1,0 +1,15 @@
+.heading{
+	text-align: center;
+}
+tr{
+	text-align:center;
+}
+td{
+	border: solid black 2px;
+}
+@media only screen and (max-width: 600px) {
+  	.maindiv{
+  		width:500px;
+/*  		background-color: blue;*/
+  	}
+}
