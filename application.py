@@ -18,8 +18,8 @@ def defaultlist():
 	# response={'status':'success'}
 	item=currentlist.getInfos()[-1]
 	itemname,rate,qty,amt=item[0],item[1],item[2],item[3]
-	print(itemname,rate,qty,amt)
 	response={'status':'success','itemname':itemname,'rate':rate,'qty':qty,'amt':amt}
+	print(response)
 	# response={'status':'success','itemname':itemname,'rate':rate,'qty':qty,'amt':amt}
 	return jsonify(response)
 
@@ -30,8 +30,10 @@ def gettotal():
 	return jsonify(response)
 
 @app.route("/additem",methods=['POST'])
-def addItem():
+def additem():
 	response={'status':'success'}
 	iname = request.form.get("iname")
-	print(iname)
+	rate = float(request.form.get("rate"))
+	qty = float(request.form.get("qty"))
+	currentlist.addItem(item(rate,qty,iname))
 	return jsonify(response)

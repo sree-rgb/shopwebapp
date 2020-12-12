@@ -3,24 +3,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function sendItem(){
-	alert('yes')
+
 	 const request1 = new XMLHttpRequest();
      const iname  =  document.querySelector('#iname').value;
+     const rate  =  document.querySelector('#rate').value;
+     const qty  =  document.querySelector('#qty').value;
      request1.open('POST','/additem');
        request1.onload = () => {
             //Extract  JSON data from request
-            const data = JSON.parse(request.responseText);
+            const response = JSON.parse(request1.responseText);
             // Update the result div
-            if (data.success) {
- 
+            if (response.status=='success') {
+            	addList()
     }
+}
     const data = new FormData();
     data.append('iname',iname);
-        
+    data.append('rate',rate);
+    data.append('qty',qty);
+    request1.send(data);
         //Send request
-    request1.send(data)
+    
+
     return false;
-}
+
+};
 document.querySelector('#itembutton').onclick=()=>{sendItem()
 };
 
