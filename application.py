@@ -13,15 +13,16 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 def index():
     return render_template("index.html")
 
-@app.route("/defaultlist",methods=['POST'])
-def defaultlist():
+@app.route("/defaultlist/<string:list_number>",methods=['POST'])
+def defaultlist(list_number):
 	# response={'status':'success'}
-	item=currentlist.getInfos()[-1]
-	itemname,rate,qty,amt=item[0],item[1],item[2],item[3]
-	response={'status':'success','itemname':itemname,'rate':rate,'qty':qty,'amt':amt}
-	print(response)
+	if list_number=='last':
+		item=currentlist.getInfos()[-1]
+		itemname,rate,qty,amt=item[0],item[1],item[2],item[3]
+		response={'status':'success','itemname':itemname,'rate':rate,'qty':qty,'amt':amt}
+		print(response)
 	# response={'status':'success','itemname':itemname,'rate':rate,'qty':qty,'amt':amt}
-	return jsonify(response)
+		return jsonify(response)
 
 
 @app.route("/gettotal",methods=['POST'])

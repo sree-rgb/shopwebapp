@@ -34,7 +34,7 @@ document.querySelector('#itembutton').onclick=()=>{sendItem()
 function addList(){
 	const request = new XMLHttpRequest();
 
-	request.open('POST','/defaultlist');
+	request.open('POST','/defaultlist/last');
 		request.onload = () =>{
 			const data =  JSON.parse(request.responseText);
 			if (data.status == 'success'){
