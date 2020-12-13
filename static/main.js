@@ -1,5 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
+function clearList(){
 
+	 const request3 = new XMLHttpRequest();
+     request3.open('POST','/clearlist');
+       request3.onload = () => {
+            //Extract  JSON data from request
+            const response = JSON.parse(request3.responseText);
+            // Update the result div
+            if (response.status=='success') {
+            	
+    }
+}
+
+    request3.send();
+        //Send request
+    
+
+    return false;
+
+};
+
+clearList()
 
 
 function sendItem(){
@@ -30,11 +51,36 @@ function sendItem(){
 };
 document.querySelector('#itembutton').onclick=()=>{sendItem()
 };
+function getBalance(){
+
+	 const request2 = new XMLHttpRequest();
+     const payment  =  document.querySelector('#payment').value;
+     request2.open('POST','/payment');
+       request2.onload = () => {
+            //Extract  JSON data from request
+            const response = JSON.parse(request2.responseText);
+            // Update the result div
+            if (response.status=='success') {
+            	document.querySelector('#balance').textContent=response.balance
+
+    }
+}
+    const data = new FormData();
+    data.append('payment',payment);
+    request2.send(data);
+        //Send request
+    
+
+    return false;
+
+};
+document.querySelector('#paymentbutton').onclick=()=>{getBalance()
+};
 
 function addList(){
 	const request = new XMLHttpRequest();
 
-	request.open('POST','/defaultlist/last');
+	request.open('POST','/defaultlist');
 		request.onload = () =>{
 			const data =  JSON.parse(request.responseText);
 			if (data.status == 'success'){
@@ -59,7 +105,7 @@ function addList(){
 	}
 	request.send();
 };
-addList()
+
 
 
 function getTotal(){
