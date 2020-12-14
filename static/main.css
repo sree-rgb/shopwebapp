@@ -1,15 +1,30 @@
 .heading{
 	text-align: center;
 }
+ul{
+	height:5rem;
+	width:12rem;
+	overflow: hidden;
+	overflow-y: scroll;
+}
 tr{
 	text-align:center;
 }
 td{
-	border: solid black 2px;
+	border: solid black .095rem;
 }
-@media only screen and (max-width: 600px) {
-  	.maindiv{
-  		width:500px;
-/*  		background-color: blue;*/
+/*@media only screen and (max-width: 800px) {
+	.maindiv{
+  		width:58rem;
+			font-size: 2rem;
+			
+  		background-color: blue;
   	}
-}
+	input{
+		font-size: 2rem;
+	}
+	button{
+		font-size: 2rem;
+		width:10rem;
+	}
+}*/

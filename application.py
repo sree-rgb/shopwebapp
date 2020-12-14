@@ -3,7 +3,8 @@ import requests
 from flask import Flask, jsonify, render_template, request, session, redirect,url_for,send_file,send_from_directory
 import datetime
 from shop import *
-
+from itemsearch import *
+import csv
 
 class tempList(itemList):
 	def clearList(self):
@@ -26,7 +27,9 @@ def clearlist():
 @app.route("/getmatchlist",methods=['POST'])
 def givematchlist():
 	response={'status':'success'}
-	return jsonify(response)
+	iname = request.form.get("iname")
+	print(iname)
+	return jsonify(csvmatcher(iname))
 
 @app.route("/defaultlist",methods=['POST'])
 def defaultlist():

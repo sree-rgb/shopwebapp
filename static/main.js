@@ -23,16 +23,23 @@ function getMatchList(){
 	request4.open('POST','/getmatchlist');
 	request4.onload = () =>{
 		const response = JSON.parse(request4.responseText);
-		alert(response.status)
+		alert(response)
 	}
-	request4.send()
+	const data = new FormData();
+	data.append('iname',iname);
+	request4.send(data)
 }
 
 clearList()
 
 getMatchList()
 
-
+function valueFiller(itemname,rate,qty) {
+	 document.querySelector('#iname').value=itemname
+	 document.querySelector('#rate').value=rate
+	 document.querySelector('#qty').value=qty
+}
+valueFiller('sugar','43','.25')
 function sendItem(){
 
 	 const request1 = new XMLHttpRequest();
