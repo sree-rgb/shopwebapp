@@ -16,11 +16,21 @@ function clearList(){
         //Send request
     
 
-    return false;
-
 };
+function getMatchList(){
+	const request4 = new XMLHttpRequest();
+	const iname  =  document.querySelector('#iname').value;
+	request4.open('POST','/getmatchlist');
+	request4.onload = () =>{
+		const response = JSON.parse(request4.responseText);
+		alert(response.status)
+	}
+	request4.send()
+}
 
 clearList()
+
+getMatchList()
 
 
 function sendItem(){

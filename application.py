@@ -4,6 +4,7 @@ from flask import Flask, jsonify, render_template, request, session, redirect,ur
 import datetime
 from shop import *
 
+
 class tempList(itemList):
 	def clearList(self):
 		self.itemList=[]
@@ -20,6 +21,11 @@ def index():
 def clearlist():
 	response={'status':'success'}
 	currentlist.clearList()
+	return jsonify(response)
+
+@app.route("/getmatchlist",methods=['POST'])
+def givematchlist():
+	response={'status':'success'}
 	return jsonify(response)
 
 @app.route("/defaultlist",methods=['POST'])
