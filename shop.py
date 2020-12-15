@@ -1,4 +1,7 @@
 class item:
+	"""
+	Item object which has a rate and Quantity.Item name is optional
+	"""
 	def __init__(self,rate,qty,name=None):
 		self.rate=rate
 		self.qty=qty
@@ -18,6 +21,9 @@ class item:
 	def getInfo(self):
 		return [self.getName(),self.getRate(),self.getQuantity(),self.getAmt()]
 class itemList:
+	"""
+	Stores a list of items.Items should be added using addItem method.
+	"""
 	def __init__(self):
 		self.itemList=[]
 	def addItem(self,item):

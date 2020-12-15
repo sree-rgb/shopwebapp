@@ -17,29 +17,42 @@ function clearList(){
     
 
 };
+function makeMatch(item){
+	btn=document.createElement('button')
+	btn.textContent=item[0]
+	btn.onclick=()=>{
+		document.querySelector('#iname').value=item[0]
+		document.querySelector('#rate').value=item[1]
+		document.querySelector('#qty').value=item[2]
+	};
+	li=document.createElement('li')
+	li.append(btn)
+	document.querySelector('ul').append(li)
+}
 function getMatchList(){
 	const request4 = new XMLHttpRequest();
 	const iname  =  document.querySelector('#iname').value;
 	request4.open('POST','/getmatchlist');
 	request4.onload = () =>{
+		clearMatchList()
 		const response = JSON.parse(request4.responseText);
-		alert(response)
+		response.forEach(makeMatch)
 	}
 	const data = new FormData();
 	data.append('iname',iname);
 	request4.send(data)
 }
-
+function clearMatchList(){
+	document.querySelector('ul').innerHTML=''
+}
 clearList()
 
 getMatchList()
-
-function valueFiller(itemname,rate,qty) {
-	 document.querySelector('#iname').value=itemname
-	 document.querySelector('#rate').value=rate
-	 document.querySelector('#qty').value=qty
+clearMatchList()
+document.querySelector('#iname').onkeyup=()=>{
+	getMatchList()
 }
-valueFiller('sugar','43','.25')
+
 function sendItem(){
 
 	 const request1 = new XMLHttpRequest();

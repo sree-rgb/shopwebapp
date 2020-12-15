@@ -28,7 +28,6 @@ def clearlist():
 def givematchlist():
 	response={'status':'success'}
 	iname = request.form.get("iname")
-	print(iname)
 	return jsonify(csvmatcher(iname))
 
 @app.route("/defaultlist",methods=['POST'])

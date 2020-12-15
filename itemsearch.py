@@ -6,7 +6,7 @@ def wordMatch(input_word,other_word):
 		if x >= len(other_word):
 			match = False
 			break;
-		elif input_word[x]!=other_word[x] and match == True:
+		elif input_word[x].lower()!=other_word[x].lower() and match == True:
 			match = False
 			break;
 
