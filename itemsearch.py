@@ -1,4 +1,5 @@
 import csv
+from operator import itemgetter
 def wordMatch(input_word,other_word):
 	match=True
 
@@ -26,6 +27,7 @@ def csvmatcher(inputword):
 	spamreader = csv.reader(csvfile)
 	test_list=list(spamreader)
 	matchlist=list(filter(lambda x:wordMatch(inputword,x[0]),test_list))
+	matchlist=sorted(matchlist, key=itemgetter(0))
 	return matchlist
 
 if __name__ == '__main__':
