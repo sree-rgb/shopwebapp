@@ -34,8 +34,8 @@ def givematchlist():
 def defaultlist():
 	# response={'status':'success'}
 	item=currentlist.getInfos()[-1]
-	itemname,rate,qty,amt=item[0],item[1],item[2],item[3]
-	response={'status':'success','itemname':itemname,'rate':rate,'qty':qty,'amt':amt}
+	itemname,rate,qty,amt,id1=item[0],item[1],item[2],item[3],item[4]
+	response={'status':'success','itemname':itemname,'rate':rate,'qty':qty,'amt':amt,'id':id1}
 	# response={'status':'success','itemname':itemname,'rate':rate,'qty':qty,'amt':amt}
 	return jsonify(response)
 
@@ -59,4 +59,19 @@ def payment():
 	response={'status':'success'}
 	payment= float(request.form.get("payment"))
 	response['balance']=currentlist.addAmtPaid(payment)
+	return jsonify(response)
+@app.route("/delitem/<string:del_id>")
+def delitem(del_id):
+	response={'status':'fail'}
+	try:
+		del_id=int(del_id)
+		if currentlist.delItem(del_id):
+			response={'status':'success'}
+			return jsonify(response)
+		return jsonify(response)
+	except IndexError:
+		return jsonify(response)
+	except ValueError:
+		return jsonify(response)
+	print(int(del_id))
 	return jsonify(response)

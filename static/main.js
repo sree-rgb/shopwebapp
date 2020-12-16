@@ -48,7 +48,7 @@ function clearMatchList(){
 clearList()
 
 getMatchList()
-clearMatchList()
+// clearMatchList()
 document.querySelector('#iname').onkeyup=()=>{
 	getMatchList()
 }
@@ -116,6 +116,8 @@ function addList(){
 			if (data.status == 'success'){
 
 				var tr = document.createElement("tr");
+				tr.id='tr'+data.id
+
 				var td = document.createElement("td");
 				td.textContent=data.itemname
 				tr.append(td)
@@ -128,8 +130,15 @@ function addList(){
 				var td4 = document.createElement("td");
 				td4.textContent=data.amt
 				tr.append(td4)
-				document.querySelector('table').append(tr)
+				var td5 = document.createElement("td");
+				var btn5 = document.createElement("button");
+				btn5.textContent='Delete'
 
+				btn5.onclick=function(){delItem(data.id)};
+				
+				td5.append(btn5)
+				tr.append(td5)
+				document.querySelector('table').append(tr)
 				getTotal()
 		}
 	}
@@ -138,6 +147,23 @@ function addList(){
 
 
 
+
+function delItem(id){
+	const request = new XMLHttpRequest();
+	request.open('GET','/delitem/'+id);
+	request.onload = () =>{
+		const response =  JSON.parse(request.responseText);
+		if (response.status=='success'){
+			delRow(id)
+
+
+		}
+	}
+	request.send();
+}
+
+// getTotal()
+	}, false);
 function getTotal(){
 	const request = new XMLHttpRequest();
 	request.open('POST','/gettotal');
@@ -151,5 +177,14 @@ function getTotal(){
 	}
 	request.send();
 };
-// getTotal()
-	}, false);
+
+function delRow(id){
+	
+	length_of_table=document.querySelector('table').childElementCount
+
+	to_be_removed=document.querySelector('#tr'+id)
+	document.querySelector('table').removeChild(to_be_removed)
+	// to_be_removed.style.display = "none"; 
+
+	getTotal()
+}

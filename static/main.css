@@ -1,7 +1,19 @@
 .heading{
 	text-align: center;
 }
+li >button{
+	
+	margin:0;
+	width:100%;
+	padding: .2rem;
+/* border: none;
+background: none; */
+	
+}
+
 ul{
+	padding: 0;
+	background-color: grey;
 	height:5rem;
 	width:12rem;
 	overflow: hidden;
