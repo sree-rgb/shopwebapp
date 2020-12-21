@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+
 function clearList(){
+	// Clears current billing list on server
 
 	 const request3 = new XMLHttpRequest();
      request3.open('POST','/clearlist');
@@ -17,19 +20,23 @@ function clearList(){
     
 
 };
+
 function makeMatch(item){
+	// Modify input values rate qty, amt to that the selected item from matchlist
 	btn=document.createElement('button')
 	btn.textContent=item[0]
 	btn.onclick=()=>{
 		document.querySelector('#iname').value=item[0]
 		document.querySelector('#rate').value=item[1]
 		document.querySelector('#qty').value=item[2]
+		amtCalculate()
 	};
 	li=document.createElement('li')
 	li.append(btn)
 	document.querySelector('ul').append(li)
 }
 function getMatchList(){
+	// Tries to match user given itemname to that prexisting itemlist imported from csv on serverside
 	const request4 = new XMLHttpRequest();
 	const iname  =  document.querySelector('#iname').value;
 	request4.open('POST','/getmatchlist');
@@ -43,11 +50,13 @@ function getMatchList(){
 	request4.send(data)
 }
 function clearMatchList(){
+	// clears matchlist
 	document.querySelector('ul').innerHTML=''
 }
 clearList()
 
 getMatchList()
+rateAmountTracker()
 // clearMatchList()
 document.querySelector('#iname').onkeyup=()=>{
 	getMatchList()
@@ -187,4 +196,36 @@ function delRow(id){
 	// to_be_removed.style.display = "none"; 
 
 	getTotal()
+}
+function rateCalculate(){
+	let amt=document.querySelector('#amt')
+	let rate=document.querySelector('#rate')
+	let qty=document.querySelector('#qty')
+	namt=parseFloat(amt.value)
+	nqty=parseFloat(qty.value)
+	nrate=Math.round((namt/nqty)* 100) / 100
+	rate.value=nrate
+	return true
+
+}
+function amtCalculate(){
+	let amt=document.querySelector('#amt')
+	let rate=document.querySelector('#rate')
+	let qty=document.querySelector('#qty')
+	nrate=parseFloat(rate.value)
+	nqty=parseFloat(qty.value)
+	namt=Math.round((nrate*nqty)* 100) / 100
+	amt.value=namt
+	return true
+
+}
+function rateAmountTracker(){
+	let amt=document.querySelector('#amt')
+	let rate=document.querySelector('#rate')
+	amt.onchange=()=>{
+		rateCalculate();
+	}
+	rate.onchange=()=>{
+		amtCalculate();
+	}
 }
