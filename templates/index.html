@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<!--  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" > -->
-		 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}?v=18" >
+		 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}?v=19" >
 		<title>ShopBillingWeb</title>
 	</head>
 	<body >
@@ -31,22 +31,22 @@
 				<td>Total</td>
 				<td id='Total'>0</td>
 			</table>
-			<form>
+			<form class='no-print'>
 			<label for="iname">Item name:</label>
 				<input type="text" id="iname" name="Iname" >
 			<label for="rate">Rate:</label>
 				<input type="text" id="rate" name="rate" >
-			<label for="rate">Qty:</label>
+			<label for="qty">Qty:</label>
 				<input type="text" id="qty" name="qty">
 			<label for="amt">Amt:</label>
 				<input type="text" id="amt" name="amt">
 
 			</form>
 
-			<button id="itembutton">Add Item</button>
+			<button id="itembutton" class='no-print'>Add Item</button>
 
 			<br>
-			<ul style="list-style-type:none;">
+			<ul class='no-print' style="list-style-type:none;">
 				<li><button>rice</button></li>
 				<li><button>wheat</button></li>
 				<li><button>sugar</button></li>
@@ -57,15 +57,19 @@
 				<li><button>lays</button></li>
 			</ul>
 			<table style="width:100%" id=>
+				<tr>
+				<td>Amt Paid</td>
+				<td id='amt_paid'>0</td>
 				<td>Balance</td>
 				<td id='balance'>0</td>
+			</tr>
 			</table>
 
-			<form>
+			<form class='no-print'>
 			<label for="iname">Payment</label>
 				<input type="text" id="payment" name="payment" value="0">
 			</form>
-			<button id="paymentbutton">Add Payment</button>
+			<button id="paymentbutton" class='no-print'>Add Payment</button>
 
 		</div>
 		<script src="{{ url_for('static', filename='main.js') }}"></script>

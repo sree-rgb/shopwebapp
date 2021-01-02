@@ -101,6 +101,7 @@ function getBalance(){
             // Update the result div
             if (response.status=='success') {
             	document.querySelector('#balance').textContent=response.balance
+            	document.querySelector('#amt_paid').textContent=payment
 
     }
 }
@@ -140,7 +141,9 @@ function addList(){
 				td4.textContent=data.amt
 				tr.append(td4)
 				var td5 = document.createElement("td");
+				td5.className='no-print'
 				var btn5 = document.createElement("button");
+
 				btn5.textContent='Delete'
 
 				btn5.onclick=function(){delItem(data.id)};
