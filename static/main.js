@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-
+newlist=true
 function clearList(){
 	// Clears current billing list on server
 
@@ -20,7 +20,14 @@ function clearList(){
     
 
 };
+function resetInputValues(){
+			document.querySelector('#iname').value=''
+		document.querySelector('#rate').value=0
+		document.querySelector('#qty').value=1
+		document.querySelector('#amt').value=0
+		getMatchList()
 
+}
 function makeMatch(item){
 	// Modify input values rate qty, amt to that the selected item from matchlist
 	btn=document.createElement('button')
@@ -68,12 +75,17 @@ function sendItem(){
      const iname  =  document.querySelector('#iname').value;
      const rate  =  document.querySelector('#rate').value;
      const qty  =  document.querySelector('#qty').value;
+     if (newlist == true){
+     	clearList()
+     }
+     newlist=false
      request1.open('POST','/additem');
        request1.onload = () => {
             //Extract  JSON data from request
             const response = JSON.parse(request1.responseText);
             // Update the result div
             if (response.status=='success') {
+            	resetInputValues()
             	addList()
     }
 }

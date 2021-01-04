@@ -5,6 +5,8 @@ import datetime
 from shop import *
 from itemsearch import *
 import csv
+import posprinter,evercom
+
 
 class tempList(itemList):
 	def clearList(self):
@@ -59,6 +61,19 @@ def payment():
 	response={'status':'success'}
 	payment= float(request.form.get("payment"))
 	response['balance']=currentlist.addAmtPaid(payment)
+	return jsonify(response)
+
+@app.route("/print",methods=['GET'])
+def printpos():
+	response={'status':'fail'}
+	output_str=posprinter.poslabels()
+	for x in currentlist.getInfos():
+		iname,rate,qty,amt=x[0],x[1],x[2],x[3]
+		output_str=output_str+posprinter.poswriter(iname,rate,qty,amt)
+	# evercom.newprint()
+	# evercom.printLine(output_str)
+	# evercom.endOfPrint()
+	print(output_str)
 	return jsonify(response)
 @app.route("/delitem/<string:del_id>")
 def delitem(del_id):

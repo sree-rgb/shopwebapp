@@ -7,17 +7,18 @@
 	</head>
 	<body >
 		<div class="maindiv">
-			<h1 class='heading'>Gain Stores</h1>
+			<div class="table_div">
+				<h1 class='heading'>Gain Stores</h1>
 
 
-			<table style="width:100%" id=>
-				<tr>
-					<th>Item</th>
-					<th>Rate</th>
-					<th>Qty</th>
-					<th>Amt</th>
-				</tr>
-<!-- 
+				<table style="width:100%" id=>
+					<tr>
+						<th>Item</th>
+						<th>Rate</th>
+						<th>Qty</th>
+						<th>Amt</th>
+					</tr>
+<!--  Items appear here
 				<tr >
 					<td>Rice</td>
 					<td>60</td>
@@ -26,44 +27,46 @@
 
 				</tr> -->
 
-			</table>
-			<table style="width:100%" id=>
-				<td>Total</td>
-				<td id='Total'>0</td>
-			</table>
-			<form class='no-print'>
-			<label for="iname">Item name:</label>
-				<input type="text" id="iname" name="Iname" >
-			<label for="rate">Rate:</label>
-				<input type="text" id="rate" name="rate" >
-			<label for="qty">Qty:</label>
-				<input type="text" id="qty" name="qty">
-			<label for="amt">Amt:</label>
-				<input type="text" id="amt" name="amt">
+				</table>
+				<table style="width:100%" id=>
+					<td>Total</td>
+					<td id='Total'>0</td>
+				</table>
+				<table style="width:100%" id=>
+					<tr>
+						<td>Amt Paid</td>
+						<td id='amt_paid'>0</td>
+						<td>Balance</td>
+						<td id='balance'>0</td>
+					</tr>
+				</table>
+			</div>
+			<div id='input_div'>
+				<form class='no-print'>
+					<label for="iname">Item name:</label>
+					<input type="text" id="iname" name="Iname" >
+					<label for="rate">Rate:</label>
+					<input type="text" id="rate" name="rate" >
+					<label for="qty">Qty:</label>
+					<input type="text" id="qty" name="qty">
+					<label for="amt">Amt:</label>
+					<input type="text" id="amt" name="amt">
 
-			</form>
+				</form>
 
-			<button id="itembutton" class='no-print'>Add Item</button>
+				<button id="itembutton" class='no-print'>Add Item</button>
+				<br>
+				<ul class='no-print' style="list-style-type:none;">
+					<li><button>rice</button></li>
+					<li><button>wheat</button></li>
+					<li><button>sugar</button></li>
+					<li><button>chilly powder</button></li>
+					<li><button>noodles</button></li>
+					<li><button>boost</button></li>
+					<li><button>bingo</button></li>
+					<li><button>lays</button></li>
+				</ul>
 
-			<br>
-			<ul class='no-print' style="list-style-type:none;">
-				<li><button>rice</button></li>
-				<li><button>wheat</button></li>
-				<li><button>sugar</button></li>
-				<li><button>chilly powder</button></li>
-				<li><button>noodles</button></li>
-				<li><button>boost</button></li>
-				<li><button>bingo</button></li>
-				<li><button>lays</button></li>
-			</ul>
-			<table style="width:100%" id=>
-				<tr>
-				<td>Amt Paid</td>
-				<td id='amt_paid'>0</td>
-				<td>Balance</td>
-				<td id='balance'>0</td>
-			</tr>
-			</table>
 
 			<form class='no-print'>
 			<label for="iname">Payment</label>
@@ -72,6 +75,7 @@
 			<button id="paymentbutton" class='no-print'>Add Payment</button>
 
 		</div>
+	</div>
 		<script src="{{ url_for('static', filename='main.js') }}"></script>
 	
 <!-- 		<script src="{{ url_for('static', filename='jquery-3.3.1.slim.min.js') }}" ></script>
