@@ -70,9 +70,11 @@ def printpos():
 	for x in currentlist.getInfos():
 		iname,rate,qty,amt=x[0],x[1],x[2],x[3]
 		output_str=output_str+posprinter.poswriter(iname,rate,qty,amt)
-	# evercom.newprint()
-	# evercom.printLine(output_str)
-	# evercom.endOfPrint()
+	output_str=output_str+posprinter.postotal(currentlist.getTotal())
+	evercom.newprint()
+	evercom.printLine(output_str)
+	evercom.endOfPrint()
+
 	print(output_str)
 	return jsonify(response)
 @app.route("/delitem/<string:del_id>")

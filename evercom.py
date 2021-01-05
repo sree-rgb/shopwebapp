@@ -5,8 +5,13 @@ from escpos.printer import Usb
 p = Usb(0x0456,0x0808,0,in_ep=0x81,out_ep=0x03)
 
 def newprint():
+	file=open('address.txt','r')
 	p.image('gainstores.png')
-	p.text('_'*32)
+	addr=(list(map(lambda x:x.strip().center(32),file.readlines())))
+	addr.append('\n')
+	for x in addr:
+		p.text(x)
+	p.text('-'*32)
 def printLine(text):
 	p.text(text)
 	print(text)
