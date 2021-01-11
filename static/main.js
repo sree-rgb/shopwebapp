@@ -244,3 +244,18 @@ function rateAmountTracker(){
 		amtCalculate();
 	}
 }
+
+function print(){
+	const request = new XMLHttpRequest();
+	request.open('GET','/print');
+	request.onload = () =>{
+
+		const data =  JSON.parse(request.responseText);
+		alert(data.status)
+			// if (data.status == 'success'){
+			// 	alert()
+
+		
+	}
+	request.send();
+};

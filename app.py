@@ -5,6 +5,7 @@ import datetime
 from shop import *
 from itemsearch import *
 import csv
+import datetime
 import posprinter,evercom
 
 
@@ -66,6 +67,7 @@ def payment():
 @app.route("/print",methods=['GET'])
 def printpos():
 	response={'status':'fail'}
+
 	output_str=posprinter.poslabels()
 	for x in currentlist.getInfos():
 		iname,rate,qty,amt=x[0],x[1],x[2],x[3]
