@@ -1,87 +1,22 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<!--  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" > -->
-		 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}?v=19" >
-		<title>ShopBillingWeb</title>
-	</head>
-	<body >
-		<div class="maindiv">
-			<div class="table_div">
-				<h1 class='heading'>Gain Stores</h1>
+<!doctype html>
 
+<html lang="en">
+<head>
+  <meta charset="utf-8">
 
-				<table style="width:100%" id=>
-					<tr>
-						<th>Item</th>
-						<th>Rate</th>
-						<th>Qty</th>
-						<th>Amt</th>
-					</tr>
-<!--  Items appear here
-				<tr >
-					<td>Rice</td>
-					<td>60</td>
-					<td>5</td>
-					<td>300</td>
+  <title>Shop Billling</title>
+  <meta name="description" content="Shop Billing App">
+  <meta name="author" content="SitePoint">
 
-				</tr> -->
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
 
-				</table>
-				<table style="width:100%" id=>
-					<td>Total</td>
-					<td id='Total'>0</td>
-				</table>
-				<table style="width:100%" id=>
-					<tr>
-						<td>Amt Paid</td>
-						<td id='amt_paid'>0</td>
-						<td>Balance</td>
-						<td id='balance'>0</td>
-					</tr>
-				</table>
-			</div>
-			<div id='input_div'>
-				<form class='no-print'>
-					<label for="iname">Item name:</label>
-					<input type="text" id="iname" name="Iname" >
-					<label for="rate">Rate:</label>
-					<input type="text" id="rate" name="rate" >
-					<label for="qty">Qty:</label>
-					<input type="text" id="qty" name="qty">
-					<label for="amt">Amt:</label>
-					<input type="text" id="amt" name="amt">
+</head>
 
-				</form>
+<body>
+	<div id="root"></div>
+	 <script src="{{ url_for('static', filename='react.development.js') }}"></script>
+	 <script src="{{ url_for('static', filename='react-dom.development.js') }}"></script>	
+	<script src="{{ url_for('static', filename='react_compiled.js') }}"></script>
 
-				<button id="itembutton" class='no-print'>Add Item</button>
-				<br>
-				<ul class='no-print' style="list-style-type:none;">
-					<li><button>rice</button></li>
-					<li><button>wheat</button></li>
-					<li><button>sugar</button></li>
-					<li><button>chilly powder</button></li>
-					<li><button>noodles</button></li>
-					<li><button>boost</button></li>
-					<li><button>bingo</button></li>
-					<li><button>lays</button></li>
-				</ul>
-
-
-			<form class='no-print'>
-			<label for="iname">Payment</label>
-				<input type="text" id="payment" name="payment" value="0">
-			</form>
-			<button id="paymentbutton" class='no-print'>Add Payment</button>
-
-		</div>
-	</div>
-		<script src="{{ url_for('static', filename='main.js') }}"></script>
-	
-<!-- 		<script src="{{ url_for('static', filename='jquery-3.3.1.slim.min.js') }}" ></script>
-		<script src="{{ url_for('static', filename='popper.min.js') }}" ></script>
-		<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script> -->
-
-
-	</body>
+</body>
 </html>
