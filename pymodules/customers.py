@@ -21,6 +21,10 @@ class customer:
 		if element =='name':
 			self.db.execute(f"UPDATE customerlist SET customer_name = '{value}' WHERE id={self.id};")
 			self.db.commit()
+		if element =='mnum':
+			self.db.execute(f"UPDATE customerlist SET mobile_number = '{value}' WHERE id={self.id};")
+			self.db.commit()
+
 class customerList:
 	def __init__(self,db):
 		self.db=db

@@ -1,3 +1,13 @@
+class Customer extends React.Component{
+  constructor(props){
+     super(props);
+    this.state = {name:props.name,mnum:props.mnum}
+    };
+  
+  render(){
+    return  (<tr key={this.props.id}><td>{this.state.mnum}</td><td>{this.state.name}</td></tr>)
+  }
+};
 
 class Viewcustomers extends React.Component {
   constructor(props) {
@@ -35,7 +45,8 @@ this.getValues()
           </tr>
        </thead>
        <tbody>
-        {this.state.customers.map((customer) =>  <tr key={customer.id}><td>{customer.mnum}</td><td>{customer.name}</td></tr>)}
+         {this.state.customers.map((customer) =>  <Customer key={customer.id} id={customer.id} mnum={customer.mnum} name={customer.name} />)}
+
         </tbody>
       </table>
      )

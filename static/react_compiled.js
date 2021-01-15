@@ -1,11 +1,37 @@
+class Customer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: props.name,
+      mnum: props.mnum
+    };
+  }
+
+  render() {
+    return (
+      /*#__PURE__*/
+      React.createElement("tr", {
+        key: this.props.id
+      },
+      /*#__PURE__*/
+      React.createElement("td", null, this.state.mnum),
+      /*#__PURE__*/
+      React.createElement("td", null, this.state.name))
+    );
+  }
+
+}
+
+;
+
 class Viewcustomers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       customers: [{
         id: 0,
-        name: 'suhaas',
-        mnum: '908478399'
+        name: 'react_name',
+        mnum: '000000000'
       }]
     };
   }
@@ -45,13 +71,12 @@ class Viewcustomers extends React.Component {
       /*#__PURE__*/
       React.createElement("tbody", null, this.state.customers.map(customer =>
       /*#__PURE__*/
-      React.createElement("tr", {
-        key: customer.id
-      },
-      /*#__PURE__*/
-      React.createElement("td", null, customer.mnum),
-      /*#__PURE__*/
-      React.createElement("td", null, customer.name)))))
+      React.createElement(Customer, {
+        key: customer.id,
+        id: customer.id,
+        mnum: customer.mnum,
+        name: customer.name
+      }))))
     );
   }
 

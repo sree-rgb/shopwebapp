@@ -42,12 +42,11 @@ def viewcustomers():
 	# response=list(map(lambda x:{'id':x[0],'mnum':x[1],'name':x[2]},db.execute('SELECT * FROM customerlist;').fetchall()))
 	c_list.updateList()
 	response=c_list.getInfolist()
-	print(c_list.updateCustomer(1,'name','Rajesh'))
-	# print(response)
+	
 	return jsonify(response)
-@app.route("/editcustomer")
+@app.route("/editcustomer",methods=['POST'])
 def editcustomer():
-
+	print(c_list.updateCustomer(1,'mnum','9895226195'))
 	return '<h1>/h1>'
 
 
