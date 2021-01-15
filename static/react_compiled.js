@@ -1,100 +1,57 @@
-class Customerform extends React.Component {
+class Viewcustomers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cname: '',
-      mnumber: ''
+      customers: [{
+        id: 0,
+        name: 'suhaas',
+        mnum: '908478399'
+      }]
     };
-    this.handlenameChange = this.handlenameChange.bind(this);
-    this.handlemnumChange = this.handlemnumChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handlenameChange(event) {
-    this.setState({
-      cname: event.target.value
-    });
-  }
-
-  handlemnumChange(event) {
-    this.setState({
-      mnumber: event.target.value
-    });
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.cname + ' Mobile number:' + this.state.mnumber);
-    event.preventDefault();
-    this.sendValues(this.state.cname, this.state.mnumber);
-  }
-
-  sendValues(cname, mnumber) {
+  getValues() {
     const request = new XMLHttpRequest();
-    request.open('POST', '/addcustomer');
+    request.open('GET', '/viewcustomers');
 
     request.onload = () => {
       const data = JSON.parse(request.responseText);
+      this.setState({
+        customers: data
+      });
+      this.forceUpdate();
+    };
 
-      if (data.status == 'success') {}
-
-      ;
-    }; //End of request.onload
+    request.send();
+  } //End 
 
 
-    const data = new FormData();
-    data.append('mobile', mnumber);
-    data.append('name', cname);
-    request.send(data);
+  componentDidMount() {
+    this.getValues();
   }
 
   render() {
     return (
       /*#__PURE__*/
-      React.createElement("div", {
-        className: "customerForm"
+      React.createElement("table", null,
+      /*#__PURE__*/
+      React.createElement("thead", null,
+      /*#__PURE__*/
+      React.createElement("tr", null,
+      /*#__PURE__*/
+      React.createElement("th", null, "Customer Mobile"),
+      /*#__PURE__*/
+      React.createElement("th", null, "Customer Name"))),
+      /*#__PURE__*/
+      React.createElement("tbody", null, this.state.customers.map(customer =>
+      /*#__PURE__*/
+      React.createElement("tr", {
+        key: customer.id
       },
       /*#__PURE__*/
-      React.createElement("h1", null, "Add New Customer"),
+      React.createElement("td", null, customer.mnum),
       /*#__PURE__*/
-      React.createElement("form", {
-        onSubmit: this.handleSubmit
-      },
-      /*#__PURE__*/
-      React.createElement("label", {
-        for: "cname"
-      }, "Name:"),
-      /*#__PURE__*/
-      React.createElement("br", null),
-      /*#__PURE__*/
-      React.createElement("input", {
-        type: "text",
-        name: "cname",
-        value: this.cname,
-        onChange: this.handlenameChange
-      }),
-      /*#__PURE__*/
-      React.createElement("br", null),
-      /*#__PURE__*/
-      React.createElement("label", {
-        for: "mnumber"
-      }, "Mobile:"),
-      /*#__PURE__*/
-      React.createElement("br", null),
-      /*#__PURE__*/
-      React.createElement("input", {
-        type: "tel",
-        maxLength: "10",
-        name: "mnumber",
-        value: this.mnumber,
-        onChange: this.handlemnumChange
-      }),
-      /*#__PURE__*/
-      React.createElement("br", null),
-      /*#__PURE__*/
-      React.createElement("input", {
-        type: "submit",
-        value: "Submit"
-      })))
+      React.createElement("td", null, customer.name)))))
     );
   }
 
@@ -102,5 +59,9 @@ class Customerform extends React.Component {
 
 ReactDOM.render(
 /*#__PURE__*/
-React.createElement(Customerform, null), document.getElementById('root'));
+React.createElement(React.Fragment, null,
+/*#__PURE__*/
+React.createElement(Customerform, null),
+/*#__PURE__*/
+React.createElement(Viewcustomers, null)), document.getElementById('root'));
 

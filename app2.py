@@ -5,9 +5,10 @@ import random
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 import requests
-
+from pymodules import customers 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+
 
 # sqlalchemy
 if not os.getenv("DATABASE_URL"):
@@ -16,7 +17,9 @@ if not os.getenv("DATABASE_URL"):
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
-
+c_list=customers.customerList(db)
+c_list.updateList()
+print(c_list.getInfolist())
 @app.route("/")
 def index():
 	return render_template("index.html")
@@ -33,9 +36,26 @@ def addcustomer():
 	db.commit()
 	print(customer_name,customer_mobile)
 	return jsonify(response)
+@app.route("/viewcustomers")
+def viewcustomers():
+	response={'status':'success'}
+	# response=list(map(lambda x:{'id':x[0],'mnum':x[1],'name':x[2]},db.execute('SELECT * FROM customerlist;').fetchall()))
+	c_list.updateList()
+	response=c_list.getInfolist()
+	print(c_list.updateCustomer(1,'name','Rajesh'))
+	# print(response)
+	return jsonify(response)
+@app.route("/editcustomer")
+def editcustomer():
+
+	return '<h1>/h1>'
+
+
+
+
 @app.route("/api/newbill")
 def newbill():
 	response={'status':'success'}
 	db.execute("INSERT INTO billlist (date1,customer_name,total) VALUES ('1609936151') ;")
-	print( db.execute('SELECT * FROM billlist;').fetchall())
+	db.execute('SELECT * FROM billlist;').fetchall()
 	return jsonify(response)

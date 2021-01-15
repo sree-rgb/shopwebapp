@@ -1,6 +1,6 @@
 CREATE TABLE customerlist (
 	id SERIAL PRIMARY KEY,
-	mobile_number NUMERIC,
+	mobile_number VARCHAR,
 	customer_name VARCHAR NOT NULL
 );
 
