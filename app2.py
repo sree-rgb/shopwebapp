@@ -46,8 +46,14 @@ def viewcustomers():
 	return jsonify(response)
 @app.route("/editcustomer",methods=['POST'])
 def editcustomer():
-	print(c_list.updateCustomer(1,'mnum','9895226195'))
-	return '<h1>/h1>'
+	# print(c_list.updateCustomer(1,'mnum','9895226195'))
+	response={'status':'success'}
+	customer_id = request.form.get("id")
+	customer_mobile = request.form.get("mobile")
+	customer_name = request.form.get("name")
+	c_list.updateCustomer(int(customer_id),'mnum',customer_mobile)
+	c_list.updateCustomer(int(customer_id),'name',customer_name)
+	return jsonify(response)
 
 
 
