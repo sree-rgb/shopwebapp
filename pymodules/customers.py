@@ -40,3 +40,11 @@ class customerList:
 			if x.getId()==c_id:
 				x.update(element,value)
 		return 'No'
+	def delCustomer(self,c_id):
+		for x in enumerate(self.customerslist):
+			if x[1].getId()==c_id:
+				self.customerslist.pop(x[0])
+				self.db.execute(f'DELETE  FROM customerlist WHERE id={c_id} ;')
+				self.db.commit()
+				return 'yes'
+		return 'no'

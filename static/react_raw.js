@@ -85,6 +85,9 @@ class Viewcustomers extends React.Component {
       customers: []
     };
   }
+  editlist(values){
+    console.log('yes')
+  }
  getValues() {
     const request = new XMLHttpRequest();
     request.open('GET', '/viewcustomers');
@@ -114,7 +117,7 @@ this.getValues()
           </tr>
        </thead>
        <tbody>
-         {this.state.customers.map((customer) =>  <Customer key={customer.id} id={customer.id} mnum={customer.mnum} name={customer.name} />)}
+         {this.state.customers.map((customer) =>  <Customer key={customer.id} id={customer.id} mnum={customer.mnum} name={customer.name} onedit={editlist} />)}
 
         </tbody>
       </table>

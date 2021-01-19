@@ -19,7 +19,8 @@ db = scoped_session(sessionmaker(bind=engine))
 
 c_list=customers.customerList(db)
 c_list.updateList()
-print(c_list.getInfolist())
+# print(c_list.getInfolist())
+
 @app.route("/")
 def index():
 	return render_template("index.html")
@@ -53,6 +54,14 @@ def editcustomer():
 	customer_name = request.form.get("name")
 	c_list.updateCustomer(int(customer_id),'mnum',customer_mobile)
 	c_list.updateCustomer(int(customer_id),'name',customer_name)
+	return jsonify(response)
+
+@app.route("/delcustomer",methods=['POST'])
+def delcustomer():
+	# print(c_list.updateCustomer(1,'mnum','9895226195'))
+	response={'status':'success'}
+	customer_id = request.form.get("id")
+	c_list.delCustomer(c_id)
 	return jsonify(response)
 
 
