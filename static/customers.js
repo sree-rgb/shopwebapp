@@ -14,7 +14,8 @@ class Customer extends React.Component{
       const data = JSON.parse(request.responseText);
 
       if (data.status == 'success') {
-        this.setState({edit_state:'saved'})
+        this.setState({edit_state:false})
+        this.props.editcustomer({'name':name,'id':id,'mnum':mnum})
         
       }
 
@@ -101,25 +102,40 @@ class Viewcustomers extends React.Component {
       customers: []
     };
     this.delcustomer=this.delcustomer.bind(this);
+    this.editcustomer=this.editcustomer.bind(this);
     this.getValues=this.getValues.bind(this)
 
   }
-  // editcustomer(values,){
-  //   // NotImplemented correctly
-  //   //
-  //     this.setState({customers:this.state.customers.map((customer)=>{
-  //     if (customer.id==values.id){
-  //       return {'id':values.id,'name':values.name,'mnum':values.mnum}
-  //     }
-  //     else{
-  //       return customer
-  //     }
-  //   }
-  //     )
-  // }
-  //     )
-  // console.log(this.state.customers)
-  // }
+  editcustomer(values,){
+    // NotImplemented correctly
+    // Modifies same array twice for react to rerender
+    // React doesnt update until a key is changed
+    let temp_array=this.state.customers.map((customer)=>{
+      if (customer.id==values.id){
+        return {'id':-1,'name':values.name,'mnum':values.mnum}
+      }
+      else{
+        return customer
+      }
+    }
+      )
+      this.setState({customers:[...temp_array]
+  }
+      )
+    temp_array=this.state.customers.map((customer)=>{
+      if (customer.id=='-1'){
+        return {'id':values.id,'name':values.name,'mnum':values.mnum}
+      }
+      else{
+        return customer
+      }
+    }
+      )
+      this.setState({customers:[...temp_array]
+  }
+      )
+  
+  }
   delcustomer(values){
     
       const request = new XMLHttpRequest();
@@ -171,7 +187,7 @@ this.getValues()
           </tr>
        </thead>
        <tbody>
-         {this.state.customers.map((customer) =>  <Customer key={customer.id} id={customer.id} mnum={customer.mnum} name={customer.name} getValues={this.getValues} delcustomer={this.delcustomer}/>)}
+         {this.state.customers.map((customer) =>  <Customer key={customer.id} id={customer.id} mnum={customer.mnum} name={customer.name} getValues={this.getValues} delcustomer={this.delcustomer} editcustomer={this.editcustomer}/>)}
 
         </tbody>
       </table>
