@@ -22,7 +22,6 @@ class Customerform extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.cname + ' Mobile number:' + this.state.mnumber);
     event.preventDefault();
     this.sendValues(this.state.cname, this.state.mnumber);
   }
@@ -34,7 +33,9 @@ class Customerform extends React.Component {
     request.onload = () => {
       const data = JSON.parse(request.responseText);
 
-      if (data.status == 'success') {}
+      if (data.status == 'success') {
+        alert('Customer Added.Refresh Page to see changes')
+      }
 
       ;
     }; //End of request.onload

@@ -58,10 +58,9 @@ def editcustomer():
 
 @app.route("/delcustomer",methods=['POST'])
 def delcustomer():
-	# print(c_list.updateCustomer(1,'mnum','9895226195'))
 	response={'status':'success'}
-	customer_id = request.form.get("id")
-	c_list.delCustomer(c_id)
+	customer_id = str(request.form.get("id")).strip()
+	c_list.delCustomer(customer_id)
 	return jsonify(response)
 
 
