@@ -42,7 +42,7 @@
 				</table>
 			</div>
 			<div id='input_div'>
-				<form class='no-print'>
+				<form class='no-print' data-lastchanged='rate'>
 					<label for="iname">Item name:</label>
 					<input type="text" id="iname" name="Iname" >
 					<label for="rate">Rate:</label>
@@ -57,14 +57,7 @@
 				<button id="itembutton" class='no-print'>Add Item</button>
 				<br>
 				<ul class='no-print' style="list-style-type:none;">
-					<li><button>rice</button></li>
-					<li><button>wheat</button></li>
-					<li><button>sugar</button></li>
-					<li><button>chilly powder</button></li>
-					<li><button>noodles</button></li>
-					<li><button>boost</button></li>
-					<li><button>bingo</button></li>
-					<li><button>lays</button></li>
+
 				</ul>
 
 
@@ -73,6 +66,7 @@
 				<input type="text" id="payment" name="payment" value="0">
 			</form>
 			<button id="paymentbutton" class='no-print'>Add Payment</button>
+			<button id="printbutton" class='no-print' onclick='print1()'>Print</button>
 
 		</div>
 	</div>

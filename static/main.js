@@ -61,7 +61,7 @@ function clearMatchList(){
 	document.querySelector('ul').innerHTML=''
 }
 clearList()
-
+console.log('javascript loaded')
 getMatchList()
 rateAmountTracker()
 // clearMatchList()
@@ -220,6 +220,7 @@ function rateCalculate(){
 	nqty=parseFloat(qty.value)
 	nrate=Math.round((namt/nqty)* 100) / 100
 	rate.value=nrate
+	document.querySelector('Form').setAttribute('data-lastchanged','amt')
 	return true
 
 }
@@ -231,16 +232,41 @@ function amtCalculate(){
 	nqty=parseFloat(qty.value)
 	namt=Math.round((nrate*nqty)* 100) / 100
 	amt.value=namt
+	document.querySelector('Form').setAttribute('data-lastchanged','rate')
 	return true
 
 }
 function rateAmountTracker(){
 	let amt=document.querySelector('#amt')
 	let rate=document.querySelector('#rate')
+	let qty=document.querySelector('#qty')
 	amt.onchange=()=>{
 		rateCalculate();
 	}
 	rate.onchange=()=>{
 		amtCalculate();
 	}
+	qty.onchange=()=>{
+		l_change=document.querySelector('Form').getAttribute('data-lastchanged')
+		temp_func=(l_change=='rate') ? amtCalculate:rateCalculate
+		temp_func();
+	}
 }
+
+function print1(){
+	const request = new XMLHttpRequest();
+	request.open('GET','/print');
+	request.onload = () =>{
+
+		const data =  JSON.parse(request.responseText);
+			if (data.status == 'success'){
+				alert('printed')
+			}
+			else {
+				alert('print failed')
+			
+
+			}
+	}
+	request.send();
+};

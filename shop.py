@@ -49,6 +49,8 @@ class itemList:
 		return payment-self.getTotal()
 	def getInfos(self):
 		return list(map(lambda x:x.getInfo(),self.item_list))
+	def clearList(self):
+		self.item_list=[]
 if __name__ == '__main__':
 	a=item(20,10)
 	aList=itemList()
