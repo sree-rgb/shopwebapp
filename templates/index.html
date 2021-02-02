@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<!--  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" > -->
-		 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}?v=19" >
+		 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}?v=22" >
 		<title>ShopBillingWeb</title>
 	</head>
 	<body >
@@ -41,16 +41,27 @@
 					</tr>
 				</table>
 			</div>
-			<div id='input_div'>
+			<div id='input_div' >
+
 				<form class='no-print' data-lastchanged='rate'>
-					<label for="iname">Item name:</label>
-					<input type="text" id="iname" name="Iname" >
-					<label for="rate">Rate:</label>
-					<input type="text" id="rate" name="rate" >
-					<label for="qty">Qty:</label>
-					<input type="text" id="qty" name="qty">
-					<label for="amt">Amt:</label>
-					<input type="text" id="amt" name="amt">
+					<div class='input_grid'>
+						<span  class="grid_item" id="name_grid">
+							<label for="iname">Item name:</label>
+							<input type="text" id="iname" name="Iname" onfocus="changeCurrentFocus(0)" >
+						</span>
+						<span  class="grid_item" id="rate_grid">
+							<label for="rate">Rate:</label>
+							<input type="text" id="rate" name="rate" onfocus="changeCurrentFocus(1)" >
+						</span>
+						<span  class="grid_item" id="qty_grid">
+							<label for="qty">Qty:</label>
+							<input type="text" id="qty" name="qty" onfocus="changeCurrentFocus(2)">
+						</span>
+						<span  class="grid_item" id="amt_grid">
+							<label for="amt">Amt:</label>
+							<input type="text" id="amt" name="amt" onfocus="changeCurrentFocus(3)">
+						</span>
+					</div>
 
 				</form>
 

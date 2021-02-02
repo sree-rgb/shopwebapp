@@ -33,6 +33,26 @@ tr{
 td{
 	border: solid black .095rem;
 }
+.input_grid{
+	width:100%;
+	display:grid;
+	 grid-template-columns:1fr 1fr 1fr 1fr;
+	 grid-template-rows:1fr;
+	 grid-template-areas:
+	 "name rate qty amt"
+}
+#name_grid{
+	grid-area:name;
+}
+#rate_grid{
+	grid-area:rate;
+}
+#qty_grid{
+	grid-area:qty;
+}
+#amt_grid{
+	grid-area:amt;
+}
 /*@media only screen and (max-width: 800px) {
 	.maindiv{
   		width:58rem;

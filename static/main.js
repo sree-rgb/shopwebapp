@@ -1,6 +1,53 @@
-document.addEventListener('DOMContentLoaded', () => {
 
+input_item_names=['iname','rate','qty','amt']
+var input_items=()=>{return input_item_names.map((name)=>{return document.getElementById(name)})}
+var current_focus_index=3
+var getNextIndex=()=>{
+	current_focus_index=(current_focus_index == (input_item_names.length-1)) ? 0:current_focus_index+1
+	return current_focus_index
+	}
+var getPrevIndex=()=>{
+	current_focus_index=(current_focus_index == 0 ) ? (input_item_names.length-1):current_focus_index-1
+	return current_focus_index
+	}
+var changeFocus=(ele)=>{ele.focus()}
+var changeCurrentFocus=(newfocus)=>{current_focus_index=parseInt(newfocus)}
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
 newlist=true
+
+
+document.onkeydown = checkKey;
+
+function checkKey(e) {
+
+    e = e || window.event;
+
+    if (e.keyCode == '38') {
+        // up arrow
+
+    }
+    else if (e.keyCode == '40') {
+        // down arrow
+    }
+    else if (e.keyCode == '37') {
+       // left arrow
+       changeFocus(input_items()[getPrevIndex()])
+    }
+    else if (e.keyCode == '39') {
+       // right arrow
+       changeFocus(input_items()[getNextIndex()])
+    }
+    else if (e.keyCode == '13') {
+       // Enter
+       sendItem()
+    }
+  }
+
+
+
 function clearList(){
 	// Clears current billing list on server
 
@@ -87,6 +134,7 @@ function sendItem(){
             if (response.status=='success') {
             	resetInputValues()
             	addList()
+            	changeFocus(input_items()[0])
     }
 }
     const data = new FormData();
@@ -255,15 +303,23 @@ function rateAmountTracker(){
 
 function print1(){
 	const request = new XMLHttpRequest();
+	const toggle_disable = ()=>{
+		button=document.getElementById("printbutton")
+		button.disabled=!button.disabled
+	}
+	console.log('click')
+	toggle_disable()
+	setTimeout(()=>{toggle_disable()},3000)
+
 	request.open('GET','/print');
 	request.onload = () =>{
 
 		const data =  JSON.parse(request.responseText);
 			if (data.status == 'success'){
-				alert('printed')
+				alert('Printed')
 			}
 			else {
-				alert('print failed')
+				alert('Print failed')
 			
 
 			}
